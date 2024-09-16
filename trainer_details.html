@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainer Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="text"]:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+        .form-group input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-group input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .form-group input[type="text"]::placeholder {
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Trainer Details</h1>
+        <form method="post" action="" name="trainer_form">
+            <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="fname" placeholder="Enter first name" required>
+            </div>
+            <div class="form-group">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lname" placeholder="Enter last name" required>
+            </div>
+            <div class="form-group">
+                <label for="design">Designation</label>
+                <input type="text" id="design" name="design" placeholder="Enter designation" required>
+            </div>
+            <div class="form-group">
+                <label for="course">Course</label>
+                <input type="text" id="course" name="course" placeholder="Enter course" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
