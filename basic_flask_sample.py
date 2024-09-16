@@ -19,6 +19,14 @@ ser="How may I help you"
 def service():
     return ser
 
+@app.route("/trainer")   
+def trainer():
+    return render_template("trainer_details.html") 
+    #render_template is used to direct the html file 
+    #HTML file should be in a directory/folder called template
+
+
+
 
 
 
