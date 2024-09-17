@@ -3,13 +3,17 @@
 from flask import Flask
 
 app=Flask(__name__)
-
+app.config['MYSQL_HOST']='HOSTNAME'                            #Please provide the hostname
+app.config['MYSQL_HOST']='USERNAME'                            #Please provide the database username
+app.config['MYSQL_PASSWORD']='DATABASE PASSWD'                 #Please provide the database username password
+app.config['MYSQL_DB']='DATABASE NAME'                         #Please provide the database name
+mysql=MySQL(app)                                               #Connecting the database to website
 home="Welcome To My Web Page"
-@app.route("/")          #you can use route instead of get it will work the same
+@app.route("/")                                                #you can use route instead of get it will work the same
 def home_one():
     return home
 
-contact="Phone Numer\tPhone Number,\nEmail myemail@mail.com"
+contact="Phone Numer\tPhone Number,\nEmail myemail@mail.com"  #
 @app.get("/cont")
 def contact_me():
     return contact
@@ -24,6 +28,16 @@ def trainer():
     return render_template("trainer_details.html") 
     #render_template is used to direct the html file 
     #HTML file should be in a directory/folder called template
+
+@app.route("/tariner_create",methods=["POST","GET"])
+def trainer_create():
+    if request.method=="POST":
+        fname_data=request.form['fname']
+        lname_data=request.form['lname']
+        design_data=request.form['design']
+        course_data=request.form['course']
+        cdate_data=data.today()
+    
 
 
 
