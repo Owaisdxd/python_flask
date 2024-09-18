@@ -3,8 +3,8 @@
 from flask import Flask
 
 app=Flask(__name__)
-app.config['MYSQL_HOST']='HOSTNAME'                            #Please provide the hostname
-app.config['MYSQL_HOST']='USERNAME'                            #Please provide the database username
+app.config['MYSQL_HOST']='HOSTNAME'                            #Please provide the hostname(can be ip) 
+app.config['MYSQL_USER']='USERNAME'                            #Please provide the database username db
 app.config['MYSQL_PASSWORD']='DATABASE PASSWD'                 #Please provide the database username password
 app.config['MYSQL_DB']='DATABASE NAME'                         #Please provide the database name
 mysql=MySQL(app)                                               #Connecting the database to website
@@ -31,19 +31,20 @@ def trainer():
 
 @app.route("/tariner_create",methods=["POST","GET"])
 def trainer_create():
-    if request.method=="POST":
-        fname_data=request.form['fname']
-        lname_data=request.form['lname']
-        design_data=request.form['design']
-        course_data=request.form['course']
-        cdate_data=data.today()
-    
-
-
-
-
-
-
+    if request.method=="POST":                                #defining method wheather we request ("GET") or give ("POST") data
+        fname_data=request.form['fname']                      #fname will be first name
+        lname_data=request.form['lname']                      #lname will be last name
+        design_data=request.form['design']                    #design will be designation
+        course_data=request.form['course']                    #course will be course name
+        cdate_data=data.today()                               #time when we are adding the data
+        sql="INSERT INTO 'data base name' (fname,lname,design,course,datetime) VALUES (%s,%s,%s,%s,%s)"  #writing the query to sql database to insert the data
+        val=(fname_data,lname_data,design_data,course_data,cdate_data)                                   #values that will be added
+        cursor=mysql.connection.cursor()                      #creating the cursor
+        cursor.execute(sql,val)                               #executing the cursor
+        mysql.connection.commit()                             #saving the data 
+        cursor.close()                                        #closing datanbase 
+        return render_template("success.html")                #Getting to the success page
+        
 
 if __name__ == "__main__":  #if you want to run using ide
     app.run(debug=True,host='192.168.0.225',port=9000)
