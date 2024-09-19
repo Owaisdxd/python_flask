@@ -46,6 +46,13 @@ def trainer_create():
         return render_template("success.html")                #Getting to the success page
         
 
+@app.route("/database",methods=["POST","GET"])                #we are defining the method here to interact with database 
+def database():                                               
+    cursor=mysql.connection.cursor()                           #creating the cursor 
+    sql="select * from trainer_details"                        #writing the query to sql database to insert the data
+    cursor.execute(sql)                                        #executing the query
+    row=cursor.fetchall()                                      #fetching data
+    return render_template("trainer_details_fetch.html",output_data=row)  #trainer_details_fetch.html is the html page where database values will be displayed
 if __name__ == "__main__":  #if you want to run using ide
     app.run(debug=True,host='192.168.0.225',port=9000)
 
