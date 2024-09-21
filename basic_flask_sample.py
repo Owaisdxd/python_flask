@@ -1,5 +1,7 @@
 #pip intall flask
-
+"""
+All the page are settedup in HTML and only linkings of the pages and logic is being implemented in this file 
+"""
 from flask import Flask
 
 app=Flask(__name__)
