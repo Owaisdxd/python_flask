@@ -46,6 +46,28 @@ def trainer_create():
         return render_template("success.html")                #Getting to the success page
         
 
+@app.route("/trainer_filter",methods=["POST","GET"])         #Adding Searching capabilities as per the course  
+def trainer_filter():
+    if request.method=="POST":
+        course_name=request.form['course']                   #course is defined in the html file 
+        if course_name=='All':                               #All is used to show all the data 
+            sql = f"select * from trainer_details"           
+            cursor = mysql.connection.cursor()
+            cursor.execute(sql)
+            row = cursor.fetchall()
+        else:                                               #It will show only those asked by user 
+            sql=f"select * from trainer_details where course='{course_name}'"
+            cursor=mysql.connection.cursor()
+            cursor.execute(sql)
+            row = cursor.fetchall()
+        return render_template("sample.html",output_data=row)
+@app.route("/database",methods=["POST","GET"])
+def database():
+    cursor=mysql.connection.cursor()
+    sql="select * from trainer_details"
+    cursor.execute(sql)
+    row=cursor.fetchall()
+    return render_template("sample.html",output_data=row)
 @app.route("/database",methods=["POST","GET"])                #we are defining the method here to interact with database 
 def database():                                               
     cursor=mysql.connection.cursor()                           #creating the cursor 
